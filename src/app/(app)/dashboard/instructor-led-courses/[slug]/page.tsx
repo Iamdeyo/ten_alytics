@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import CourseVideo from "./components/CourseVideo";
 import CourseProgress from "./components/CourseProgress";
 import SelectedCourseSideBar from "./components/SelectedCourseSideBar";
+import AssessmentModal from "./components/assessmentModal";
 
 export default function SelectedCoursePage() {
   return (
@@ -15,6 +16,7 @@ export default function SelectedCoursePage() {
           <SelectedCourseSideBar />
         </CardContent>
       </Card>
+      <AssessmentModal />
     </>
   );
 }

@@ -3,6 +3,7 @@ import {
   CheckCircle2Icon,
   CheckCircleIcon,
   ChevronDownIcon,
+  ListChecksIcon,
   LockKeyholeIcon,
   MenuIcon,
   PlayCircleIcon,
@@ -14,6 +15,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Icons } from "@/components/ui/icons";
+import { cn } from "@/lib/utils";
 
 export default function SelectedCourseSideBar() {
   const data = [
@@ -36,10 +38,65 @@ export default function SelectedCourseSideBar() {
               id: "553",
               title: "Introduction to Excel",
               isCompleted: true,
-              assessmentTest: "COMPLETED",
+              assessmentTest: "INCOMPLETED",
             },
             {
               id: "554",
+              title: "Introduction to Excel",
+              isCompleted: false,
+              assessmentTest: "INCOMPLETED",
+            },
+          ],
+        },
+        {
+          id: "555",
+          module: 2,
+          courses: [
+            {
+              id: "556",
+              title: "Introduction to Excel",
+              isCompleted: false,
+              assessmentTest: "INCOMPLETED",
+            },
+            {
+              id: "557",
+              title: "Introduction to Excel",
+              isCompleted: false,
+              assessmentTest: "INCOMPLETED",
+            },
+            {
+              id: "558",
+              title: "Introduction to Excel",
+              isCompleted: false,
+              assessmentTest: "INCOMPLETED",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "56",
+      week: 2,
+      title: "Building your Dashboard in Power BI",
+      modules: [
+        {
+          id: "561",
+          module: 1,
+          courses: [
+            {
+              id: "562",
+              title: "Introduction to Excel",
+              isCompleted: true,
+              assessmentTest: "COMPLETED",
+            },
+            {
+              id: "563",
+              title: "Introduction to Excel",
+              isCompleted: true,
+              assessmentTest: "COMPLETED",
+            },
+            {
+              id: "564",
               title: "Introduction to Excel",
               isCompleted: true,
               assessmentTest: "COMPLETED",
@@ -67,7 +124,7 @@ export default function SelectedCourseSideBar() {
                     WEEK {dt.week}
                   </p>
 
-                  <AccordionItem value="item-1" className="border-0">
+                  <AccordionItem value={"item" + dt.id} className="border-0">
                     <div className="rounded-lg bg-neutral-100 dark:bg-neutral-900 p-2">
                       <AccordionTrigger className="font-semibold text-start">
                         {dt.title}
@@ -91,7 +148,11 @@ function Modules({ data }: any) {
   return (
     <Accordion type="single" collapsible>
       {data.map((dt: any) => (
-        <AccordionItem key={dt.id} value="item-1" className="border-0">
+        <AccordionItem
+          key={dt.id}
+          value={"modules-item-" + dt.id}
+          className="border-0"
+        >
           <div className="rounded-md bg-sec dark:bg-sec-dark p-1.5 pb-0 mt-4">
             <AccordionTrigger>
               <span className="text-pri">Module {dt.module}:</span>
@@ -100,7 +161,7 @@ function Modules({ data }: any) {
               </div>
             </AccordionTrigger>
             <AccordionContent>
-              <Courses />
+              <Courses data={dt.courses} />
             </AccordionContent>
           </div>
         </AccordionItem>
@@ -113,10 +174,32 @@ function Courses({ data }: any) {
   return (
     <>
       <ul>
-        <li className="p-1 flex items-center gap-2">
-          <PlayCircleIcon /> <span>Introduction to Excel </span>
-          <Icons.circleCheck className="text-neutral-500 dark:text-neutral-400 ml-auto" />
-        </li>
+        {data.map((dt: any) => (
+          <li key={dt.id} className="">
+            <div className="px-2 py-3 flex items-center gap-2  mt-4 hover:border-dashed hover:border">
+              <PlayCircleIcon /> <span> {dt.title} </span>
+              <Icons.circleCheck
+                className={cn(
+                  "ml-auto",
+                  dt.isCompleted
+                    ? "text-green-500"
+                    : "text-neutral-500 dark:text-neutral-400"
+                )}
+              />
+            </div>
+            <div className="px-2 py-3 flex items-center gap-2  mt-4 hover:border-dashed hover:border">
+              <ListChecksIcon /> <span> Assessment Test </span>
+              <Icons.circleCheck
+                className={cn(
+                  "ml-auto",
+                  dt.assessmentTest === "COMPLETED"
+                    ? "text-green-500"
+                    : "text-neutral-500 dark:text-neutral-400"
+                )}
+              />
+            </div>
+          </li>
+        ))}
       </ul>
     </>
   );

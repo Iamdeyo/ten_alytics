@@ -1,8 +1,6 @@
 "use client";
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -21,7 +19,7 @@ export default function FirstTimeModal() {
       <AlertDialogContent className="bg-[#FBFDFF] dark:bg-slate-900">
         <div className="relative">
           <Button
-            className=" absolute -top-20 right-0 rounded-full"
+            className=" absolute -top-20 -right-6 rounded-full"
             size={"icon"}
             variant={"outline"}
             onClick={() => setOpen(false)}

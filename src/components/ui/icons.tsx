@@ -780,7 +780,7 @@ export const Icons = {
         width={22}
         height={22}
         fill="currentColor"
-        fillOpacity={0.16}
+        fillOpacity={1}
         rx={11}
       />
       <path
